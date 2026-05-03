@@ -1,15 +1,38 @@
 from pydantic import BaseModel, Field
-from typing import Literal
+from typing import Literal, Optional
 
 class WorkOrderSchema(BaseModel):
-    """Schema for detecting common infrastructure problems."""
-    intent: str = Field(..., description="Action to be performed, e.g., 'Create Work Order'")
-    problem_area: str = Field(..., description="Category of the issue, e.g., 'LAN', 'Hardware', 'Electrical'")
-    severity: Literal["low", "medium", "high"] = Field(
-        ..., description="The severity of the user query"
+    """
+    Schema for infrastructure problems. 
+    Fields are Optional to prevent hallucination; LLM returns null if information is missing.
+    """
+    # Intent is restricted to specific categories but remains optional[cite: 2]
+    intent: Optional[Literal["server", "network", "hardware", "software", "application"]] = Field(
+        None, 
+        description="The primary category of the issue. Leave null if not explicitly identifiable."
     )
-    location_id: str = Field(..., alias="Location id", description="The ID/Site name of the location")
-    summary: str = Field(..., description="A brief summary of the user query")
+    
+    problem_area: Optional[str] = Field(
+        None, 
+        description="Specific category like 'LAN' or 'Power'. Leave blank if not found."
+    )
+    
+    severity: Optional[Literal["low", "medium", "high"]] = Field(
+        None, 
+        description="Severity level. Do not guess; leave null if not stated."
+    )
+    
+    # Use alias to match your specific requirement while keeping Python naming conventions[cite: 2]
+    location_id: Optional[str] = Field(
+        None, 
+        alias="Location id", 
+        description="The Site name or ID. Leave null if missing."
+    )
+    
+    summary: Optional[str] = Field(
+        None, 
+        description="A concise summary of the problem. Leave null if no description provided."
+    )
 
     class Config:
         populate_by_name = True

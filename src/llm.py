@@ -44,7 +44,8 @@ def llm_explanation(llm_instance, user_query, chat_history=None,tool=None):
     {chat_history}
 
     TASK:
-    1. Check if the user query is related to any problem or any topic to discover.
+    1. Check if the user query is related to any problem or any topic to discover
+    2. Leave field empty if exact match not found as defined in literal.
     2. Stay 100% faithful to the technical facts 
     3. Generate output response in 500 tokens or short response
     """

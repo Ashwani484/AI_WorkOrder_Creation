@@ -1,13 +1,24 @@
 import json
-import os
+import os,re
 from src.schema import WorkOrderSchema
 
 DB_FILE = "work_orders_db.json"
 
+def sanitize_string(text: str) -> str:
+    """Removes markdown backticks, extra spaces, and hidden characters."""
+    if not text:
+        return ""
+    # Remove backticks and strip whitespace
+    clean_text = text.replace("`", "").strip()
+    # Remove any non-printable ASCII if necessary
+    return re.sub(r'[^\x20-\x7E]', '', clean_text)
+
 def save_to_json(order_id: str, sap_status: str, data: WorkOrderSchema):
     history = load_all_records()
+    # 1. Clean the primary keys
+    clean_id = sanitize_string(order_id).upper()  # Force uppercase for WOXXXXX consistency
     entry = data.model_dump(by_alias=True)
-    entry["order_id"] = order_id
+    entry["order_id"] = clean_id
     entry["sap_status"] = sap_status  # Save the processing status[cite: 4, 5]
     history.append(entry)
     

@@ -151,5 +151,32 @@
         "summary": "Production application is down at location-mumbai; server reboot required to restore service.",
         "order_id": "WO5365",
         "sap_status": "Received"
+    },
+    {
+        "intent": "server",
+        "problem_area": "Service failure causing server reboot; user also needs urgent support for HP ProBook laptop",
+        "severity": "high",
+        "Location id": "lucknow",
+        "summary": "Server reboot required due to service failure and urgent support needed for HP ProBook laptop at Lucknow location.",
+        "order_id": "`WO6350`",
+        "sap_status": "Received"
+    },
+    {
+        "intent": "server",
+        "problem_area": "server reboot and laptop hardware support",
+        "severity": "high",
+        "Location id": "Lucknow",
+        "summary": "Server needs reboot due to service failure and urgent support is required for an HP ProBook laptop at the Lucknow location.",
+        "order_id": "WO3123",
+        "sap_status": "Received"
+    },
+    {
+        "intent": "network",
+        "problem_area": "Application connectivity",
+        "severity": "high",
+        "Location id": "Lucknow",
+        "summary": "Urgent network failure causing application connection issues at Lucknow location; users unable to connect and require immediate fix.",
+        "order_id": "WO3824",
+        "sap_status": "Received"
     }
 ]
