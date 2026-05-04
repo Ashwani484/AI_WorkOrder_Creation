@@ -1,0 +1,30 @@
+# --- Core AI & LangChain ---
+langchain
+langchain-community
+langchain-core
+langchain-huggingface
+langgraph
+langchain-ollama
+
+# --- Hugging Face Transformers & Models ---
+torch
+accelerate
+sentence-transformers
+bitsandbytes
+
+# --- Data & Web Scraping ---
+pandas
+numpy
+python-dotenv
+flashrank
+# --- Vector Database ---
+faiss-cpu
+
+# --- Utilities ---
+regex
+requests
+streamlit
+plotly
+pydantic
+fastapi
+
